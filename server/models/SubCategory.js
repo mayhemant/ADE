@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-const { ObjectId } = mongoose.Schema;
-const Category = require("./category");
 const subSchema = new mongoose.Schema(
   {
     name: {
@@ -17,7 +15,15 @@ const subSchema = new mongoose.Schema(
       lowercase: true,
       index: true,
     },
-    parent: { type: ObjectId, ref: Category, required: true },
+    badge: {
+      type: String,
+    },
+    image: {
+      type: String,
+    },
+    cover: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

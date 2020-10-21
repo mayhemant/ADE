@@ -18,7 +18,7 @@ router.post("/category", requireSignin, adminMiddleware, create);
 router.get("/categories", list);
 router.get("/category/:slug", read);
 router.put("/category/:slug", requireSignin, adminMiddleware, update);
-router.delete("category/:slug", requireSignin, adminMiddleware, remove);
+router.delete("/category/:slug", requireSignin, adminMiddleware, remove);
 
 // router.param("catSlug", categoryBySlug);
 module.exports = router;
