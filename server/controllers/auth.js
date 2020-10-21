@@ -7,18 +7,24 @@ exports.signup = (req, res) => {
         error: `User with ${email} already Exists, if you did not created account, please contact our support team!`,
       });
     }
-    const { firstname, lastname, email, password } = req.body;
+    const { lastName, firstName, email, password } = req.body;
     let username = email.split("@")[0];
 
-    let newUser = new User({ name, email, password, profile, username });
+    let newUser = new User({
+      firstName,
+      lastName,
+      email,
+      password,
+      username,
+    });
 
     newUser.save((err, user) => {
       if (err) {
         return res.status(400).json({
-          error: "Please try again",
+          error: err,
         });
       }
-      res.json({
+      res.status(200).json({
         message: `Signup success, please LogIn to continue`,
       });
     });
