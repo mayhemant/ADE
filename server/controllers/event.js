@@ -6,7 +6,6 @@ const stripHtml = require("string-strip-html");
 const _ = require("lodash");
 exports.create = (req, res) => {
   //
-
   const {
     name,
     cover,

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const crypto = require("crypto");
-
+const { ObjectId } = mongoose.Schema;
 const userSchema = new mongoose.Schema(
   {
     username: {
@@ -77,6 +77,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "mayhemant",
     },
+    organization: [{ type: ObjectId, ref: "Organization", required: true }],
   },
   { timestamps: true }
 );
