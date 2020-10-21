@@ -157,10 +157,13 @@ exports.update = (req, res) => {
         error: errorHandler(err),
       });
     }
-
+    if (req.body.slug) {
+      req.body.slug = oldEvent.slug;
+    }
+    if (req.body.organization) {
+      req.body.organization = oldEvent.organization;
+    }
     newEvent = _.merge(oldEvent, req.body);
-    newEvent.slug = oldEvent.slug;
-    newEvent.organization = oldEvent.organization;
     newEvent.save((err) => {
       if (err) {
         return res.status(400).json({
