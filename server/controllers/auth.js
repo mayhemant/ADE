@@ -90,12 +90,14 @@ exports.authMiddleware = (req, res, next) => {
   });
 };
 
-exports.adminMiddleWare = (req, res, next) => {
+exports.adminMiddleware = (req, res, next) => {
   const adminUserID = req.user._id;
-  User.findById({ adminUserID }).exec((err, user) => {
+  console.log(adminUserID);
+  User.findById({ _id: adminUserID }).exec((err, user) => {
     if (err || !user) {
+      console.log(err);
       return res.status(400).json({
-        error: "User Not Found",
+        error: "User Not Found -Admin",
       });
     }
 

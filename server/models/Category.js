@@ -6,10 +6,11 @@ const categorySchema = new mongoose.Schema(
       type: String,
       trim: true,
       required: true,
-      max: 32,
+      maxlength: [32, "Too Long"],
     },
     slug: {
       type: String,
+      trim: true,
       unique: true,
       index: true,
     },
