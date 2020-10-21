@@ -70,3 +70,42 @@ exports.signout = (req, res) => {
     message: "Signed Out Successfully",
   });
 };
+
+exports.requireSignin = expressJwt({
+  secret: process.env.JWT_SECRET,
+  algorithms: ["HS256"],
+});
+
+exports.authMiddleware = (req, res, next) => {
+  const authUserId = req.user._id;
+  User.findById({ _id: authUserId }).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: "User Not Found",
+      });
+    }
+
+    req.profile = user;
+    next();
+  });
+};
+
+exports.adminMiddleWare = (req, res, next) => {
+  const adminUserID = req.user._id;
+  User.findById({ adminUserID }).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: "User Not Found",
+      });
+    }
+
+    if (user.role !== 1) {
+      return res.status(401).json({
+        error: "Admin Resource!",
+      });
+    }
+
+    req.profile = user;
+    next();
+  });
+};
