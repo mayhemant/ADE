@@ -43,9 +43,11 @@ const userSchema = new mongoose.Schema(
     },
     profile_photo: {
       type: String,
+      default: "https://twitter.com/AllDesignEvents/photo",
     },
     cover: {
       type: String,
+      default: "https://twitter.com/AllDesignEvents/photo",
     },
     gender: {
       type: String,
@@ -57,18 +59,23 @@ const userSchema = new mongoose.Schema(
     },
     twitter: {
       type: String,
+      default: "mayhemant",
     },
     instagram: {
       type: String,
+      default: "mayhemant",
     },
     facebook: {
       type: String,
+      default: "mayhemant",
     },
     mail: {
       type: String,
+      default: "mayhemant",
     },
     website: {
       type: String,
+      default: "mayhemant",
     },
   },
   { timestamps: true }
